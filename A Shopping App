@@ -1,0 +1,143 @@
+shop = [
+
+    ['Name', 'Price', 'Stock'],
+    ['apple', 10, 5],
+    ['banana', 8, 6],
+    ['carrot', 5, 10]
+]
+
+revenue = 0
+
+def all_item():
+	print("Displaying All Items In The Inventory")
+	print(shop[0])
+	print("--------------------------")
+	for stuff in shop[1:]:
+		print(stuff)
+
+
+def menu():
+		print("1. Show All Items")
+		print("2. Add New Item To Shop")
+		print("3. Add Stock To Existing Item")
+		print("4. Reduce Stock Of An Item")
+		print("5. Customer Buy")
+		print("6. Show Revenue")
+		print("7. Check Low Stock Items")
+		print("8. Change Item Price")
+		print("9. Eixt")
+
+
+def add_item():
+	print("Please Provide The Name, Price And Stock Number Accordingly")
+	name = input()
+	for item in shop[1:]:
+		if item[0] == name:
+			print("Item Already Exists!")
+			break
+	else:	
+		price = int(input())
+		stock = int(input())
+		shop.append([name, price, stock])
+	
+
+def stock_cng():
+    item_name = input("Enter the name of the item: ")
+    for item in shop[1:]:
+    	if item[0] == item_name:
+    		print("Enter The New Stock Number")
+    		new_stock = int(input())
+    		item[2] = new_stock
+    		print("Stock Successfully Updated")
+    		break
+    else:
+    	print("Name Not Found")	
+
+
+def customer_buy():
+	global revenue
+	all_item()
+	print("Enter The Product Customer Wants To Buy")
+	name = input()
+	for item in shop[1:]:
+		if item[0] == name:
+			print("Item Found Stock Available: " + str(item[2]) + " And Price Is: " + str(item[1]))
+			print("How many " + str(item[0]) + " Does The Customer Wants To Buy")
+			quantity = int(input())
+			if quantity >item[2]:
+				print("Stock Not Available")
+				break
+			else:
+				total_cost = item[1] * quantity
+				print("Stock Available And The Total Will be " + str(total_cost))
+				item_new = int(item[2] - quantity)
+				item[2] = item_new
+				print("The New Stock Of " + str(item[0] + " is: " + str(item[2])))
+				revenue = int(revenue + total_cost)
+				break
+				 
+				
+
+def revenue_TOTAL():
+	print("The Total Revenue Is: " + str(revenue))
+
+
+
+def low_stocks():
+		for item in shop[1:]:
+			if item [2] < 3 :
+				print ("The Stock Is Low Of " + item[0] + " Which Is : " + str(item [2]))
+			else:
+				print("No Low Stocks For The Moment")	
+
+def cng_price():
+		print("Search The Product With Name:")
+		for item in shop1[1:]:
+			name = input()
+			if item[0] == name:
+				print("Product Found. What Do You Want The Updated Price To Be?")
+				price = input()
+				item[1] = price
+				print("Price Successfully Updated")
+				break			 
+
+
+			else:
+				print("Product Not Found")
+				break
+
+
+def exit():
+	print("Thank You For Using Our Shopping Software")
+
+
+
+while True:
+	try:
+		menu()
+		choice = int(input())
+
+		if choice == 1:
+			all_item()
+		elif choice > 9 or choice < 0:
+			print(" Invalid Choice, Try Again!")
+		elif choice == 2:
+			add_item()
+		elif choice == 3:
+			stock_cng()
+		elif choice == 4:
+			stock_cng()
+		elif choice == 5:
+			customer_buy()
+		elif choice == 6:
+			revenue_TOTAL()
+		elif choice == 7:
+			low_stocks()
+		elif choice == 8:
+			cng_price()	
+		elif choice == 9:
+			exit()
+			break	
+
+	except:
+		print("Enter A Valid Number")		
