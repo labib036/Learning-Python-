@@ -87,24 +87,24 @@ def low_stocks():
 		for item in shop[1:]:
 			if item [2] < 3 :
 				print ("The Stock Is Low Of " + item[0] + " Which Is : " + str(item [2]))
-			else:
-				print("No Low Stocks For The Moment")	
+		else:
+			print("No Low Stocks For The Moment")	
 
 def cng_price():
 		print("Search The Product With Name:")
-		for item in shop1[1:]:
+		for item in shop[1:]:
 			name = input()
 			if item[0] == name:
 				print("Product Found. What Do You Want The Updated Price To Be?")
-				price = input()
+				price = int(input())
 				item[1] = price
 				print("Price Successfully Updated")
 				break			 
 
 
-			else:
-				print("Product Not Found")
-				break
+		else:
+			print("Product Not Found")
+				
 
 
 def exit():
