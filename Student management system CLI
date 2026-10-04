@@ -141,30 +141,33 @@ def add_students():
     print("Student Added Successfully! ID: ", new_id)
 def remove_students():
     print("--- Remove a Student ---")
-    print("ID         Name       Roll")
-    print("--------------------------")
+    print("Enter The Name To Search:")
+    search_name = input()
+    
+    count = 0
     for student_id, data in students.items():
-        print(student_id, "   ", data['name'], "      ", data['roll'])
-
-    print("Enter The Roll Number Of The Student You Want To Remove: ")
-    roll_to_remove = int(input())
-    id = ""
-    for student_id, data in students.items():
-        if data['roll'] == roll_to_remove:
-            id = student_id
-            break  
-    if id == "":
+        if search_name in data['name']:
+            print("ID:", student_id, " | Name:", data['name'])
+            count = count + 1
+            
+    if count == 0:
         print("Student not found!")
     else:
-        print("Student found:", students[id]['name'])
-        print("Are You Sure? (y/n)")
-        confirm = input()
+        print("Enter The Student ID You Want To Remove:")
+        student_id_to_remove = input()
         
-        if confirm == "y":
-            del students[id]
-            print("Student removed successfully!")
+        if student_id_to_remove in students:
+            print("Student found:", students[student_id_to_remove]['name'])
+            print("Are You Sure? (y/n)")
+            confirm = input()
+            
+            if confirm == "y":
+                del students[student_id_to_remove]
+                print("Student removed successfully!")
+            else:
+                print("Removal cancelled.")
         else:
-            print("Removal cancelled.")
+            print("Invalid Student ID!")
 def search_student():
     print("1. Search By Name")
     print("2. Search By Roll")
