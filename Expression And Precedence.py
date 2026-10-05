@@ -1,0 +1,8 @@
+print ('Hello Mr Or Mrs, hope you are having a great day!')
+print ('Can you please tell me your name?')
+Name = input()
+print ('It is great to meet you, ' + Name)
+print ('Lenth of your name is:'+ str(len(Name)))
+print('Can you please inform me your age?')
+age = input()
+print('That is great!, you will be ' + str(int(age)+1) + ' in a year.')
