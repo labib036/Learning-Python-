@@ -1,0 +1,34 @@
+pet = ['thin', 'cute', 'white', 'persian', 'lovely']
+size, looks, color, breed, behaviour = pet
+
+try:
+
+	while True:
+		print("1.Pet Size")
+		print("2.Pet Looks")
+		print("3.Pet Color")
+		print("4.Pet Breed")
+		print("5.Pet Behaviour")
+		print("6.Exit")
+
+		choice = int(input())
+
+		if choice == 1:
+			print(size)
+		elif choice == 2:
+			print(looks)
+		elif choice == 3:
+			print(color)
+		elif choice == 4:
+			print(breed)
+		elif choice == 5:
+			print(behaviour)
+		elif choice == 6:
+			break
+		else :
+			print("Enter A Valid Number From 1 To 5")
+
+except :
+		print("Enter A Valid Number From (1 - 5)")
+
+		
