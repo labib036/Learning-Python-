@@ -1,5 +1,5 @@
 import re
-names = ["Mishu", "Nipu", "Shuvo", "Sumi", "Tumpa", "Roni", "Riya", "Adnan", "Ladoo", "Chumchum", "Kaju", "Pesta", "Modhu", "Babui", "Babu", "Tuktuki", "Piku", "Mumu", "Tutu", "Chotu", "Koko", "Nono", "Potol", "Boba", "Bhuto", "Khoka", "Khuki", "Dusto"]
+names = ["Mishu", "Nipu", "Shuvo", "Sumi", "Tumpa", "Roni", "Riya", "Adnan", "Ladoo", "Chumchum", "Kaju", "Pesta", "Modhu", "Babui", "Babu", "Tuktuki", "Piku", "Mumu", "Tutu", "Chotu", "Koko", "Nono", "Potol", "Boba", "Bhuto", "Khoka", "Khuki", "Dusto", "Shuo"]
 
 for name in names:                   #Search with the first letter
     if re.search(r"^S", name):
@@ -19,6 +19,7 @@ for name in names:
 	if re.search(r"hu", name):
 		print(name)
 print("---------") 	
+
 for name in names:
-	if re.search(r"hu | ab", name):
+	if re.search(r"hu|o ", name):
 		print(name)	
