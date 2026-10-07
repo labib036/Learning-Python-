@@ -1,3 +1,4 @@
+import re
 students = {
     "STU001": {
         "name": "Alice",
@@ -168,26 +169,66 @@ def remove_students():
                 print("Removal cancelled.")
         else:
             print("Invalid Student ID!")
+import re
+
 def search_student():
     print("1. Search By Name")
     print("2. Search By Roll")
-    choice = int(input())
-    
-    if choice == 1:
-        print("Please Provide The Name Of The Student")
-        search_name = input()
-        for student_id, data in students.items():
-            if search_name in data['name']:
-                avg = int((data['physics'] + data['chemistry'] + data['maths']) / 3)
-                print(student_id, '-', data['name'], '-', data['class'], '-', data['section'], '-', data['roll'], '-', data['physics'], '-', data['chemistry'], '-', data['maths'], '-', avg, '-', data['grade'], '-', data['contact'],  '-', data['blood_group'])
+    choice = input()
 
-    elif choice == 2:
-        print("Please Provide The Roll Of The Student")
-        search_roll = int(input())
+    if choice == "1":
+        print("1. Search with first letter of name")
+        print("2. Search with any letter of name")
+        print("3. Search with last letter of name")
+        option = input()
+
+        print("Please Provide The Letter")
+        letter = input()
+
+        found = False
+
         for student_id, data in students.items():
-            if data['roll'] == search_roll:
+            name = data['name']
+
+            if option == "1":
+                result = re.search("^" + letter, name)
+            elif option == "2":
+                result = re.search(letter, name)
+            elif option == "3":
+                result = re.search(letter + "$", name)
+            else:
+                print("Wrong option")
+                break
+
+            if result:
                 avg = int((data['physics'] + data['chemistry'] + data['maths']) / 3)
-                print(student_id, '-', data['name'], '-', data['class'], '-', data['section'], '-', data['roll'], '-', data['physics'], '-', data['chemistry'], '-', data['maths'], '-', avg, '-', data['grade'], '-', data['contact'],  '-', data['blood_group'])
+                print(student_id, '-', data['name'], '-', data['class'], '-', data['section'], '-', data['roll'], '-', data['physics'], '-', data['chemistry'], '-', data['maths'], '-', avg, '-', data['grade'], '-', data['contact'], '-', data['blood_group'])
+                found = True
+
+        if found == False and option in ["1", "2", "3"]:
+            print("Student not found")
+
+    elif choice == "2":
+        print("Please Provide The Roll Of The Student")
+        search_roll = input()
+
+        if search_roll.isdigit():
+            search_roll = int(search_roll)
+            found = False
+
+            for student_id, data in students.items():
+                if data['roll'] == search_roll:
+                    avg = int((data['physics'] + data['chemistry'] + data['maths']) / 3)
+                    print(student_id, '-', data['name'], '-', data['class'], '-', data['section'], '-', data['roll'], '-', data['physics'], '-', data['chemistry'], '-', data['maths'], '-', avg, '-', data['grade'], '-', data['contact'], '-', data['blood_group'])
+                    found = True
+
+            if found == False:
+                print("Student not found")
+        else:
+            print("Roll must be a number")
+
+    else:
+        print("Wrong choice")
 
 def edit_student():
     print("Enter Student ID to edit:")
